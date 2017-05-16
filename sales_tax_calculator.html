@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Calculate Sales Tax From Total Amount.
+        </title>
+    </head>
+    <body>
+        <form>
+            <h3>Calculate Nassau County Sales Tax(8.625%)</h3>
+            <label>Enter Total Sale Amount: </label>
+            <br />
+            <input type="text" name="total_amt" id="total_amt">
+            <button id="submit">Calculate</button>
+        </form>
+        <br />
+        <div id="results">
+            <div id="sub_total"></div>
+            <div id="tax_amount"></div>
+            <div id="total"></div>
+        </div>
+        <script>
+            let button = document.getElementById('submit');
+            button.onclick = (event) => {
+                let total = parseFloat( document.getElementById('total_amt').value);
+                event.preventDefault();
+                let preTaxAmt = (total / 1.08625).toFixed(2);
+                let tax = (total - preTaxAmt).toFixed(2);
+                let totalProof = (parseFloat(preTaxAmt) + parseFloat(tax)).toFixed(2);
+
+                document.getElementById('sub_total').innerHTML  = "Subtotal: $" + preTaxAmt;
+                document.getElementById('tax_amount').innerHTML = "Tax Amount: $" + tax;
+                document.getElementById('total').innerHTML = "Total: $" + totalProof;                
+            }
+        </script>
+    </body>
+</html>
